@@ -1,0 +1,33 @@
+<table border="1">
+	<thead>
+		<td>Id</td>
+		<td>Nom</td>
+	</thead>
+	<tr th:each="client : ${clients}">
+		<td th:text="${client.id}"></td>
+		<td th:text="${client.name}"></td>
+	</tr>
+</table>
+<span th:if="${errorMessage}" th:text="${errorMessage}"
+	style="color: red"></span>
+<br />
+Ajouter un client :
+<br />
+<form th:action="@{ajouterClient}" th:object="${newClient}"
+	method="POST">
+	Name : <input type="text" th:field="*{name}" /> <input type="submit"
+		value="Create" />
+</form>
+
+<table border="1">
+	<thead>
+		<th>Delete</th>
+		<td>Id</td>
+		<td>Nom</td>
+	</thead>
+	<tr th:each="client : ${clients}">
+		<td><a th:href="'delete/'+${client.id}">delete</a></td>
+		<td th:text="${client.id}"></td>
+		<td th:text="${client.name}"></td>
+	</tr>
+</table>
